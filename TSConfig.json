@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "declaration": true,
+        "esModuleInterop": true,
+        "module": "ES2022",
+        "moduleResolution": "bundler",
+        "noImplicitAny": true,
+        "outDir": "dist",
+        "removeComments": false,
+        "resolveJsonModule": true,
+        "strict": true,
+        "target": "ES2024"
+    },
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}
