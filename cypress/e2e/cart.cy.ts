@@ -9,7 +9,7 @@ describe("Shopping cart test cases", () => {
 
   //ej:4
   it("should redirect from empty cart to the Products page", () => {
-    header.goCartPage();
+    header.navigateCartPage();
     cartPage.verifyCartEmptyIsVisible();
     cartPage.backProductsPage();
     productsPage.verifyProductsPageIsVisible();

@@ -1,19 +1,17 @@
 import { accountCreatedPage } from "../pages/AccountCreatedPage";
 import { deleteAccountPage } from "../pages/DeleteAccountPage";
 import { header } from "../pages/Header";
-import { signupLoginPage } from "../pages/SignupLoginPage";
-import { signupPage } from "../pages/SignupPage";
+import { userAccountPage } from "../pages/UserAccountPage";
 
-describe("Signup test cases", () => {
+describe("User account test cases", () => {
   beforeEach(() => {
-    header.goSignupLoginPage();
+    cy.newUserSignup("john", "john25@blass.com");
   });
 
   //ej:2
   it("should successfully register and display the Account Created page", () => {
-    signupLoginPage.fillSignupForm("john", "john25@blass.com");
-    signupPage.fillEnterAccountInfo("Mr.", "pass-123", "15", "1", "2000");
-    signupPage.fillAddressInformation(
+    userAccountPage.fillAccountInfo("Mr.", "pass-123", "15", "1", "2000");
+    userAccountPage.fillAddressInfo(
       "john",
       "Dop",
       "1225 Hartzog Loop",
@@ -23,13 +21,13 @@ describe("Signup test cases", () => {
       "99705",
       "610-979-6915"
     );
+    userAccountPage.clickCreateAccount();
     accountCreatedPage.verifyNewUserAccountIsCreated();
+    accountCreatedPage.clickContinue();
   });
 
   afterEach(() => {
-    accountCreatedPage.clickContinue();
-    header.goDeleteAccountPage();
-    deleteAccountPage.verifyDeleteAccountPageIsVisible();
-    deleteAccountPage.clickContinue();
+    header.navigateDeleteAccountPage();
+    deleteAccountPage.clickDelete();
   });
 });

@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 import { header } from "../pages/Header";
-import { signupLoginPage } from "../pages/SignupLoginPage";
+import { loginPage } from "../pages/LoginPage";
 import { UserCredential } from "./types";
 
 // ***********************************************
@@ -34,16 +34,20 @@ import { UserCredential } from "./types";
 export {};
 
 Cypress.Commands.add("login", () => {
-  cy.fixture("userCredentials").then((credential: UserCredential) => {
-    header.goSignupLoginPage();
-    signupLoginPage.fillLoginForm(credential.email, credential.password);
-  });
+  header.navigateLoginPage();
+  loginPage.fillLoginForm();
+});
+
+Cypress.Commands.add("newUserSignup", (name: string, email: string) => {
+  header.navigateLoginPage();
+  loginPage.fillSignupForm(name, email);
 });
 
 declare global {
   namespace Cypress {
     interface Chainable {
       login(): Chainable<void>;
+      newUserSignup(name: string, email: string): Chainable<void>;
     }
   }
 }

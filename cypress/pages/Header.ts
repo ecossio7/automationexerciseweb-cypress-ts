@@ -4,15 +4,15 @@ class Header {
   private deleteAccountBtn = () => cy.contains("Delete Account");
   private cartBtn = () => cy.contains("Cart");
 
-  public goSignupLoginPage(): void {
+  public navigateLoginPage(): void {
     this.signupLoginBtn().click();
   }
 
-  public goDeleteAccountPage(): void {
+  public navigateDeleteAccountPage(): void {
     this.deleteAccountBtn().click();
   }
 
-  public goCartPage(): void {
+  public navigateCartPage(): void {
     this.cartBtn().click();
   }
 

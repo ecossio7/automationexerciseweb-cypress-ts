@@ -1,4 +1,4 @@
-class SignupPage {
+class UserAccountPage {
   private enterAccountInfoTitle = () => cy.contains("Enter Account Information");
   private titleRdo = (type: string) => cy.contains(`${type}`);
   private passwordTxt = () => cy.get("[data-qa='password']");
@@ -21,7 +21,7 @@ class SignupPage {
     this.enterAccountInfoTitle().should("be.visible");
   }
 
-  public fillEnterAccountInfo(type: string, password: string, day: string, month: string, year: string): void {
+  public fillAccountInfo(type: string, password: string, day: string, month: string, year: string): void {
     this.titleRdo(type).click();
     this.passwordTxt().type(password);
     this.dayDdl().select(day);
@@ -31,7 +31,7 @@ class SignupPage {
     this.partnersLbl().click();
   }
 
-  public fillAddressInformation(
+  public fillAddressInfo(
     firstName: string,
     lastName: string,
     address: string,
@@ -49,8 +49,11 @@ class SignupPage {
     this.cityTxt().type(city);
     this.zipCodeTxt().type(zipCode);
     this.mobileNumberTxt().type(mobileNumber);
+  }
+
+  public clickCreateAccount(): void {
     this.createAcountBtn().click();
   }
 }
 
-export const signupPage = new SignupPage();
+export const userAccountPage = new UserAccountPage();
