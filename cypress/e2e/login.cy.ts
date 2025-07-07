@@ -6,8 +6,8 @@ describe("Login and New User Signup test cases", () => {
     header.navigateLoginPage();
   });
 
-  //ej:1
   it("should be visible the 'Signup and Login' forms.", () => {
-    loginPage.verifySignupAndLoginFormsAreVisible();
+    loginPage.verifyLoginFormIsVisible();
+    loginPage.verifySignupFormIsVisible();
   });
 });

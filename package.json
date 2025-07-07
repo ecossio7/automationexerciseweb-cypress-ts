@@ -4,14 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cy:open":"cypress open"    
+    "precy:run": "rm -rf node_modules/allure-results && rm -rf node_modules/allure-report",
+    "cy:open": "cypress open",
+    "cy:chrome": "cypress run",
+    "allure": "allure generate node_modules/allure-results -o node_modules/allure-report && allure open node_modules/allure-report"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",  
+  "license": "ISC",
   "type": "module",
-  "devDependencies": {    
+  "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "allure": "^3.0.0-beta.15",
+    "allure-cypress": "^3.3.0",
     "cypress": "^14.3.3",
+    "cypress-file-upload": "^5.0.8",
     "prettier": "^3.5.3",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"

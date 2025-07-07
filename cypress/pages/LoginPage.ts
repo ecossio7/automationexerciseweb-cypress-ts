@@ -1,3 +1,4 @@
+import { should } from "chai";
 import { UserCredential } from "../support/types";
 
 class LoginPage {
@@ -24,9 +25,18 @@ class LoginPage {
     this.signupBtn().click();
   }
 
-  public verifySignupAndLoginFormsAreVisible(): void {
-    this.loginLbl().should("have.text", "Login to your account");
-    this.newUserSignupLbl().should("have.text", "New User Signup!");
+  public verifySignupFormIsVisible(): void {
+    this.newUserSignupLbl().should("be.visible").and("have.text", "New User Signup!");
+    this.nameTxt().should("be.visible").and("be.enabled");
+    this.emailTxt().should("be.visible").and("be.enabled");
+    this.signupBtn().should("be.visible");
+  }
+
+  public verifyLoginFormIsVisible(): void {
+    this.loginLbl().should("be.visible").and("have.text", "Login to your account");
+    this.emailAddressTxt().should("be.visible").and("be.enabled");
+    this.passwordTxt().should("be.visible").and("be.enabled");
+    this.loginBtn().should("be.visible");
   }
 }
 
