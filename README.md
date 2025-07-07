@@ -7,7 +7,7 @@ This project is an **end-to-end** testing framework built with **Cypress** and *
 The project structure is organized as follows:
 
 ```
-CYPRESS-TS/
+AUTOMATIONEXERCISEWEB-CYPRESS-TS/
 │
 ├── cypress/                   # Cypress test folder
 │   ├── downloads/             # Files downloaded during tests
@@ -27,50 +27,63 @@ CYPRESS-TS/
 
 ### Step 1: Clone the repository
 
-If you haven't already cloned the repository, run the following command:
-
 ```bash
 git clone <repository-url>
 ```
 
 ### Step 2: Install dependencies
 
-Run the following command to install the required dependencies:
-
 ```bash
 npm install
 ```
-
 This will install **Cypress**, **TypeScript**, and other necessary dependencies defined in `package.json`.
 
 ## Configuration
 
 This project uses **TypeScript** and **Cypress** together for end-to-end testing. The configuration files are:
 
-- **`cypress.config.ts`**: The configuration for Cypress settings (e.g., base URLs, timeouts).
+- **`cypress.config.ts`**: The configuration for Cypress settings (e.g., base URLs, cypress project id, allure, browser settings, timeouts).
 - **`tsconfig.json`**: The TypeScript configuration to ensure the proper compilation of TypeScript files in the project.
 
 ## Running the Tests
 
-### Open Cypress Test Runner
-
-To run the tests in the Cypress UI, use the following command:
+### Using npx
 
 ```bash
-npx cypress open
+-Run all tests using browser by default Eletron:
+$ npx cypress open
+
+-Run all tests using Chrome:
+$ npx cypress run -b <chrome>
+
+-Run a test (Add only in test i.e. it.only(...);):
+Define the spec for example below
+$ npx cypress run -b chrome --spec "cypress/e2e/cart.cy.ts"
+
+-Run all tests and display them in cypress dashboard (--record --key kevalue) for example:
+$ npx cypress run -b chrome --record --key b9784bc1-fed5-477e-b4be-92fc90985f06
+
+Note: Add headed parameter allows to see the browser execution, example:
+$ npx cypress open --headed
 ```
 
-This will open the Cypress Test Runner, where you can select and run your tests interactively.
-
-### Run Tests Headlessly
-
-To run the tests in a headless browser (without the UI), run:
+### Using a script from package.json
+For example "cy:run": "cypress run"
 
 ```bash
-npx cypress run
-```
+-Run all tests using browser by default Eletron:
+$ npm run cy:run
 
-This will execute all the tests and display the results in the terminal.
+-Run all tests using Chrome:
+$ npm run cy:run -- -b <chrome>
+
+-Run a test (Add only in test i.e. it.only(...);):
+Example
+$ npm run cy:run -- -b chrome --spec "cypress/e2e/cart.cy.ts"
+
+-Run all tests and display them in cypress dashboard, for example:
+$ npm run cy:run -- -b chrome --record --key b9784bc1-fed5-477e-b4be-92fc90985f06
+```
 
 ## Writing Tests
 
@@ -79,7 +92,7 @@ Tests are located inside the `cypress/e2e/` folder. Each test file is written in
 Example of a simple test (`firstExample.cy.ts`):
 
 ```typescript
-describe("My First Test", () => {
+describe("Set Tests", () => {
   it("Should visit the website and check title", () => {
     cy.visit("https://example.com");
     cy.title().should("include", "Example");
@@ -94,13 +107,21 @@ You can add custom commands for reusable test functionality. Custom commands are
 Example of adding a custom login command (`commands.ts`):
 
 ```typescript
+export{};
 Cypress.Commands.add("login", (email: string, password: string) => {
-  cy.get('input[name="email"]').type(email);
-  cy.get('input[name="password"]').type(password);
-  cy.get('button[type="submit"]').click();
+    header.navigateLoginPage();
+    loginPage.fillLoginForm();
 });
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      login(): Chainable<void>;   
+    }
+  }
 ```
 
 ## 📘 Documentation
 
 - [Naming Conventions for Page Objects](./naming-conventions.md)
+- [Cypress core concepts](https://docs.cypress.io/app/core-concepts/interacting-with-elements)
