@@ -6,7 +6,7 @@
   "scripts": {
     "precy:run": "rm -rf node_modules/allure-results && rm -rf node_modules/allure-report",
     "cy:open": "cypress open",
-    "cy:chrome": "cypress run",
+    "e2e:run": "cypress run --browser chrome",
     "allure": "allure generate node_modules/allure-results -o node_modules/allure-report && allure open node_modules/allure-report"
   },
   "keywords": [],

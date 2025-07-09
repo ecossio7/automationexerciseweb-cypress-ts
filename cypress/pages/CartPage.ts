@@ -18,9 +18,10 @@ class CartPage {
     });
     this.unselectedProducts();
   }
+
   private unselectedProducts(): void {
-    this.shoppingCart().each(($product) => {
-      cy.wrap($product).click();
+    this.shoppingCart().each((item) => {
+      cy.wrap(item).click();
     });
   }
 }

@@ -7,10 +7,10 @@ class ProductsPage {
   private addTocartBtn = () => cy.contains("Add to cart");
   private continueShoppingBtn = () => cy.contains("Continue Shopping");
   private brandsLbl = () => cy.contains("Brands");
-  private allProductsList = () => cy.get(".product-image-wrapper");
+  private productsList = (index: number) => cy.get(".product-image-wrapper").eq(index);
 
-  public selectFirstProduct(): void {
-    this.allProductsList().first().contains("View Product").click();
+  public selectFirstProductOfList(): void {
+    this.productsList(0).contains("View Product").click();
   }
 
   public selectProducts(seletedProductNames: string[]): void {
@@ -36,7 +36,7 @@ class ProductsPage {
   }
 
   public verifyPriceIsCorrect(expectedPrice: string): void {
-    this.allProductsList().first().find("h2").should("be.visible").and("contain.text", expectedPrice);
+    this.productsList(0).should("be.visible").and("contain.text", expectedPrice);
   }
 }
 

@@ -1,3 +1,5 @@
+import { SupportMessage } from "../support/types";
+
 class ContactUsPage {
   private contactUsLbl = () => cy.contains("Contact Us");
   private nameTxt = () => cy.get("[data-qa='name']");
@@ -20,12 +22,11 @@ class ContactUsPage {
     this.successLbl().should("be.visible").and("have.text", "Success! Your details have been submitted successfully.");
   }
 
-  public fillForm(name: string, email: string, subject: string, message: string): void {
-    this.nameTxt().type(name);
-    this.emailTxt().type(email);
-    this.subjectTxt().type(subject);
-    this.messageTxt().type(message);
-
+  public fillForm(supportMessage: SupportMessage): void {
+    this.nameTxt().type(supportMessage.firstName);
+    this.emailTxt().type(supportMessage.email);
+    this.subjectTxt().type(supportMessage.subject);
+    this.messageTxt().type(supportMessage.message);
     this.submitBtn().click();
   }
 }

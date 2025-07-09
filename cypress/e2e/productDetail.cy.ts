@@ -1,40 +1,19 @@
-import { faker } from "@faker-js/faker";
-import { header } from "../pages/Header";
 import { productDetailPage } from "../pages/ProductDetailPage";
-import { productsPage } from "../pages/ProductsPage";
+import { getExpectedProductDetail, getRandomUser, getRandomWriteYourReview } from "../support/utils";
 
 describe("Product detail test cases", () => {
   beforeEach(() => {
-    cy.login();
-    header.navigateProductsPage();
-    productsPage.selectFirstProduct();
+    cy.navigateProductDetailPage();
   });
 
-  it("should display all info detail about selected product correctly", () => {
-    const expectedTitle = "Blue Top";
-    const exppectedDescription = "Category: Women > ";
-    const expectedPrice = "Rs. 500";
-    const expectedQuantity = "1";
-    const expectedAvailability = "In Stock";
-    const expectedCondition = "New";
-    const expectedBrand = "Polo";
-
-    productDetailPage.verifyAllElementsAreVisibleInPage(
-      expectedTitle,
-      exppectedDescription,
-      expectedPrice,
-      expectedQuantity,
-      expectedAvailability,
-      expectedCondition,
-      expectedBrand
-    );
+  it.only("should display all info detail about selected product (Blue Top) correctly", () => {
+    const blueTop = getExpectedProductDetail();
+    productDetailPage.verifyAllElementsAreVisibleInPage(blueTop);
   });
 
   it("should sumit a review info detail about selected product correctly", () => {
-    const name = faker.person.firstName();
-    const email = faker.internet.email();
-    const review = faker.lorem.sentence();
-    productDetailPage.summitReview(name, email, review);
+    const userOpinion = getRandomWriteYourReview();
+    productDetailPage.summitReview(userOpinion);
     productDetailPage.verifySuccessMessageIsVisble("Thank you for your review.");
   });
 });

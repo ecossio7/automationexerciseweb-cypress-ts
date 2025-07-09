@@ -1,6 +1,3 @@
-import { should } from "chai";
-import { UserCredential } from "../support/types";
-
 class LoginPage {
   private newUserSignupLbl = () => cy.get(".signup-form h2");
   private loginLbl = () => cy.get(".login-form h2");
@@ -11,11 +8,9 @@ class LoginPage {
   private emailAddressTxt = () => cy.get("[data-qa='signup-email']");
   private signupBtn = () => cy.get("[data-qa='signup-button']");
 
-  public fillLoginForm(): void {
-    cy.fixture("userCredentials").then((user: UserCredential) => {
-      this.emailTxt().type(user.email);
-      this.passwordTxt().type(user.password);
-    });
+  public fillLoginForm(email: string, password: string): void {
+    this.emailTxt().type(email);
+    this.passwordTxt().type(password);
     this.loginBtn().click();
   }
 

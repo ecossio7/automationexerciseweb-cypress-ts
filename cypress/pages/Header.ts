@@ -5,7 +5,6 @@ class Header {
   private cartBtn = () => cy.contains("Cart");
   private productsBtn = () => cy.contains("Products");
   private contactUsBtn = () => cy.contains("Contact us");
-  private seletedHomePage = () => cy.get('a[href="/"]');
 
   public navigateLoginPage(): void {
     this.signupLoginBtn().click();
@@ -33,10 +32,6 @@ class Header {
 
   public verifyLogoutBtnIsVisible() {
     this.logoutBtn().should("be.visible");
-  }
-
-  public verifyHomeBtnIsSelected(): void {
-    this.seletedHomePage().should("have.attr", "style").and("include", "color:brown");
   }
 }
 

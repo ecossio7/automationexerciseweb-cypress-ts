@@ -1,3 +1,5 @@
+import { AccountInfo, AddressInfo } from "../support/types";
+
 class UserAccountPage {
   private enterAccountInfoTitle = () => cy.contains("Enter Account Information");
   private titleRdo = (type: string) => cy.contains(`${type}`);
@@ -21,34 +23,25 @@ class UserAccountPage {
     this.enterAccountInfoTitle().should("be.visible");
   }
 
-  public fillAccountInfo(type: string, password: string, day: string, month: string, year: string): void {
-    this.titleRdo(type).click();
-    this.passwordTxt().type(password);
-    this.dayDdl().select(day);
-    this.monthDdl().select(month);
-    this.yearDdl().select(year);
+  public fillAccountInfo(accountInfo: AccountInfo): void {
+    this.titleRdo(accountInfo.status).click();
+    this.passwordTxt().type(accountInfo.password);
+    this.dayDdl().select(accountInfo.day);
+    this.monthDdl().select(accountInfo.month);
+    this.yearDdl().select(accountInfo.year);
     this.newsLetterLbl().click();
     this.partnersLbl().click();
   }
 
-  public fillAddressInfo(
-    firstName: string,
-    lastName: string,
-    address: string,
-    country: string,
-    state: string,
-    city: string,
-    zipCode: string,
-    mobileNumber: string
-  ): void {
-    this.firstNameTxt().type(firstName);
-    this.lastNameTxt().type(lastName);
-    this.addressTxt().type(address);
-    this.countryDdl().select(country);
-    this.stateTxt().type(state);
-    this.cityTxt().type(city);
-    this.zipCodeTxt().type(zipCode);
-    this.mobileNumberTxt().type(mobileNumber);
+  public fillAddressInfo(addressInfo: AddressInfo): void {
+    this.firstNameTxt().type(addressInfo.firstName);
+    this.lastNameTxt().type(addressInfo.lastName);
+    this.addressTxt().type(addressInfo.address);
+    this.countryDdl().select(addressInfo.country);
+    this.stateTxt().type(addressInfo.state);
+    this.cityTxt().type(addressInfo.city);
+    this.zipCodeTxt().type(addressInfo.zipCode);
+    this.mobileNumberTxt().type(addressInfo.mobilePhone);
   }
 
   public clickCreateAccount(): void {

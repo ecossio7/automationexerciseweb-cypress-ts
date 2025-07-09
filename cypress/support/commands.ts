@@ -2,7 +2,8 @@
 
 import { header } from "../pages/Header";
 import { loginPage } from "../pages/LoginPage";
-import { UserCredential } from "./types";
+import { productsPage } from "../pages/ProductsPage";
+import { NewUser, TestUserCredential } from "./types";
 
 // ***********************************************
 // This example commands.ts shows you how to
@@ -33,21 +34,48 @@ import { UserCredential } from "./types";
 
 export {};
 
-Cypress.Commands.add("login", () => {
+Cypress.Commands.add("navigateHomePage", () => {
   header.navigateLoginPage();
-  loginPage.fillLoginForm();
+  cy.fixture("testUserCredential").then((userAccount: TestUserCredential) => {
+    loginPage.fillLoginForm(userAccount.email, userAccount.password);
+  });
 });
 
-Cypress.Commands.add("newUserSignup", (name: string, email: string) => {
+Cypress.Commands.add("navigateProductDetailPage", () => {
+  cy.navigateHomePage();
+  header.navigateProductsPage();
+  productsPage.selectFirstProductOfList();
+});
+
+Cypress.Commands.add("newUserSignup", (user: NewUser) => {
   header.navigateLoginPage();
-  loginPage.fillSignupForm(name, email);
+  loginPage.fillSignupForm(user.name, user.email);
+});
+
+Cypress.Commands.add("navigateProductsPage", () => {
+  cy.navigateHomePage();
+  header.navigateProductsPage();
+});
+
+Cypress.Commands.add("navigateCartPage", () => {
+  cy.navigateHomePage();
+  header.navigateCartPage();
+});
+
+Cypress.Commands.add("navigateContactUsPage", () => {
+  cy.navigateHomePage();
+  header.navigateContactUsPage();
 });
 
 declare global {
   namespace Cypress {
     interface Chainable {
-      login(): Chainable<void>;
-      newUserSignup(name: string, email: string): Chainable<void>;
+      navigateHomePage(): Chainable<void>;
+      newUserSignup(user: NewUser): Chainable<void>;
+      navigateProductDetailPage(): Chainable<void>;
+      navigateProductsPage(): Chainable<void>;
+      navigateCartPage(): Chainable<void>;
+      navigateContactUsPage(): Chainable<void>;
     }
   }
 }

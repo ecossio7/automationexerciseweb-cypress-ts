@@ -5,8 +5,7 @@ import { productsData } from "../support/data";
 
 describe("Products test cases", () => {
   beforeEach(() => {
-    cy.login();
-    header.navigateProductsPage();
+    cy.navigateProductsPage();
   });
 
   it("should show Special Offer, search bar, categories, and product list in 'Products page'.", () => {
@@ -21,7 +20,7 @@ describe("Products test cases", () => {
   });
 
   it("should show 3 selected products in 'Shopping cart'. ", () => {
-    const productNames: string[] = ["Blue Top", "Winter Top", "Soft Stretch Jeans"];
+    const productNames = ["Blue Top", "Winter Top", "Soft Stretch Jeans"];
     productsPage.selectProducts(productNames);
     header.navigateCartPage();
     cartPage.verifySelectedProductsAreVisible(productNames);

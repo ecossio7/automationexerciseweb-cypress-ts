@@ -1,11 +1,9 @@
 import { contactUsPage } from "../pages/ContactUsPage";
-import { header } from "../pages/Header";
-import { faker } from "@faker-js/faker";
+import { getRandomSupportMessage } from "../support/utils";
 
 describe("Contact us test cases", () => {
   beforeEach(() => {
-    cy.login();
-    header.navigateContactUsPage();
+    cy.navigateContactUsPage();
   });
 
   it("should show title, inputs, buttons in 'Contact us' page", () => {
@@ -13,7 +11,8 @@ describe("Contact us test cases", () => {
   });
 
   it("should display success message after form submission", () => {
-    contactUsPage.fillForm(faker.person.firstName(), faker.internet.email(), faker.lorem.lines(1), faker.lorem.sentence());
+    const supportMessage = getRandomSupportMessage();
+    contactUsPage.fillForm(supportMessage);
     contactUsPage.verifySuccessMessageIsVisible();
   });
 });
