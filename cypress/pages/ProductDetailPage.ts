@@ -15,11 +15,11 @@ class ProductDetailPage {
   private alertSuccessMsg = () => cy.get(".alert-success");
 
   public verifyAllElementsAreVisibleInPage(expectedProduct: Product): void {
-    this.titleLbl().should("have.text", expectedProduct.title);
-    this.productInfo(expectedProduct.description).should("be.visible");
-    this.productInfo(expectedProduct.availability).should("be.visible");
-    this.productInfo(expectedProduct.condition).should("be.visible");
-    this.productInfo(expectedProduct.brand).should("be.visible");
+    this.titleLbl().should("have.text", expectedProduct.name);
+    this.productInfo(expectedProduct.description!).should("be.visible");
+    this.productInfo(expectedProduct.availability!).should("be.visible");
+    this.productInfo(expectedProduct.condition!).should("be.visible");
+    this.productInfo(expectedProduct.brand!).should("be.visible");
     this.starsLbl().should("be.visible");
     this.priceLbl().should("contain.text", expectedProduct.price);
     this.quantityLbl().invoke("val").should("eq", expectedProduct.quantity);

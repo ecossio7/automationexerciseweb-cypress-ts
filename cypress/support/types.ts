@@ -1,7 +1,7 @@
-export type TestUserCredential = {
+export interface TestUserCredential {
   email: string;
   password: string;
-};
+}
 
 export interface NewUser {
   name: string;
@@ -37,13 +37,13 @@ export interface SupportMessage {
 }
 
 export interface Product {
-  title: string;
-  description: string;
+  name: string;
+  description?: string;
   price: string;
-  quantity: string;
-  availability: string;
-  condition: string;
-  brand: string;
+  quantity?: string;
+  availability?: string;
+  condition?: string;
+  brand?: string;
 }
 
 export interface WriteYourReview {

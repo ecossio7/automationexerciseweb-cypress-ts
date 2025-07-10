@@ -44,7 +44,7 @@ export function getRandomSupportMessage(): SupportMessage {
 
 export function getExpectedProductDetail(): Product {
   return {
-    title: "Blue Top",
+    name: "Blue Top",
     description: "Category: Women > ",
     price: "Rs. 500",
     quantity: "1",
@@ -61,3 +61,22 @@ export function getRandomWriteYourReview(): WriteYourReview {
     review: faker.commerce.productDescription(),
   };
 }
+
+export const productsPrice: Product[] = [
+  {
+    name: "Stylish Dress",
+    price: "1500",
+  },
+  {
+    name: "Summer White Top",
+    price: "400",
+  },
+  {
+    name: "Fancy Green Top",
+    price: "700",
+  },
+  {
+    name: "Madame Top For Women",
+    price: "1000",
+  },
+];

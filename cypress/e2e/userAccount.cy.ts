@@ -1,11 +1,10 @@
 import { accountCreatedPage } from "../pages/AccountCreatedPage";
-import { deleteAccountPage } from "../pages/DeleteAccountPage";
-import { header } from "../pages/Header";
 import { userAccountPage } from "../pages/UserAccountPage";
+import { NewUser } from "../support/types";
 import { getRandomUser } from "../support/utils";
 
 describe("User account test cases", () => {
-  var newUser: any;
+  let newUser: NewUser;
   beforeEach(() => {
     newUser = getRandomUser();
     cy.newUserSignup(newUser);
@@ -20,7 +19,6 @@ describe("User account test cases", () => {
   });
 
   afterEach(() => {
-    header.navigateDeleteAccountPage();
-    deleteAccountPage.clickDelete();
+    cy.deleteUserAccount();
   });
 });

@@ -1,7 +1,7 @@
 import { cartPage } from "../pages/CartPage";
 import { header } from "../pages/Header";
 import { productsPage } from "../pages/ProductsPage";
-import { productsData } from "../support/data";
+import { productsPrice } from "../support/utils";
 
 describe("Products test cases", () => {
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe("Products test cases", () => {
     productsPage.verifyProductsPageIsVisible();
   });
 
-  productsData.forEach((product) => {
+  productsPrice.forEach((product) => {
     it(`should display correct price (Rs. ${product.price}) for product: ${product.name}`, () => {
       productsPage.selectProduct(product.name);
       productsPage.verifyPriceIsCorrect(product.price);

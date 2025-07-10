@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import { deleteAccountPage } from "../pages/DeleteAccountPage";
 import { header } from "../pages/Header";
 import { loginPage } from "../pages/LoginPage";
 import { productsPage } from "../pages/ProductsPage";
@@ -67,6 +68,11 @@ Cypress.Commands.add("navigateContactUsPage", () => {
   header.navigateContactUsPage();
 });
 
+Cypress.Commands.add("deleteUserAccount", () => {
+  header.navigateDeleteAccountPage();
+  deleteAccountPage.clickDelete();
+});
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -76,6 +82,7 @@ declare global {
       navigateProductsPage(): Chainable<void>;
       navigateCartPage(): Chainable<void>;
       navigateContactUsPage(): Chainable<void>;
+      deleteUserAccount(): Chainable<void>;
     }
   }
 }
