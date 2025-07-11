@@ -22,7 +22,7 @@ class ProductDetailPage {
     this.productInfo(expectedProduct.brand!).should("be.visible");
     this.starsLbl().should("be.visible");
     this.priceLbl().should("contain.text", expectedProduct.price);
-    this.quantityLbl().invoke("val").should("eq", expectedProduct.quantity);
+    this.quantityLbl().invoke("val").should("eq", expectedProduct.quantity?.toString());
     this.addToCartBtn().should("be.enabled");
     this.writeYourReviewLbl().should("have.text", "Write Your Review");
     this.emailTxt().should("be.visible").and("be.enabled");

@@ -68,9 +68,30 @@ Cypress.Commands.add("navigateContactUsPage", () => {
   header.navigateContactUsPage();
 });
 
-Cypress.Commands.add("deleteUserAccount", () => {
-  header.navigateDeleteAccountPage();
-  deleteAccountPage.clickDelete();
+/***
+ * Deletes an user account via the AutomationExercise API.
+ *
+ * Note:
+ * The API documentation states it should return status code 200 and the message: "Account deleted!".
+ *
+ * However, it only returns status code 200, while the actual message indicates an error.
+ * It seems the deletion  is  only  simulated  by the website for demonstration purposes and does not
+ * perform a real delete.
+ */
+Cypress.Commands.add("deleteUserAccountByAPI", (email: string, password: string) => {
+  cy.request({
+    method: "DELETE",
+    url: "https://automationexercise.com/api/deleteAccount",
+    form: true,
+    body: {
+      email,
+      password,
+    },
+    failOnStatusCode: false,
+  }).then((response) => {
+    expect(response.status).to.eq(200);
+    //expect(response.body.message).to.eq("Account deleted!");
+  });
 });
 
 declare global {
@@ -82,7 +103,7 @@ declare global {
       navigateProductsPage(): Chainable<void>;
       navigateCartPage(): Chainable<void>;
       navigateContactUsPage(): Chainable<void>;
-      deleteUserAccount(): Chainable<void>;
+      deleteUserAccountByAPI(email: string, password: string): Chainable<void>;
     }
   }
 }

@@ -40,7 +40,7 @@ export interface Product {
   name: string;
   description?: string;
   price: string;
-  quantity?: string;
+  quantity?: number;
   availability?: string;
   condition?: string;
   brand?: string;

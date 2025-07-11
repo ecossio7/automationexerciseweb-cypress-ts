@@ -1,5 +1,5 @@
 import { productDetailPage } from "../pages/ProductDetailPage";
-import { getExpectedProductDetail, getRandomWriteYourReview } from "../support/utils";
+import { getRandomWriteYourReview } from "../support/utils";
 
 describe("Product detail test cases", () => {
   beforeEach(() => {
@@ -7,7 +7,15 @@ describe("Product detail test cases", () => {
   });
 
   it("should display all info detail about selected product (Blue Top) correctly", () => {
-    const blueTop = getExpectedProductDetail();
+    const blueTop = {
+      name: "Blue Top",
+      description: "Category: Women > ",
+      price: "Rs. 500",
+      quantity: 1,
+      availability: "In Stock",
+      condition: "New",
+      brand: "Polo",
+    };
     productDetailPage.verifyAllElementsAreVisibleInPage(blueTop);
   });
 

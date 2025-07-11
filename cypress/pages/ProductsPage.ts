@@ -35,8 +35,8 @@ class ProductsPage {
     this.allProductsLbl().should("be.visible");
   }
 
-  public verifyPriceIsCorrect(expectedPrice: string): void {
-    this.productsList(0).should("be.visible").and("contain.text", expectedPrice);
+  public verifyPriceIsCorrect(index: number, expectedPrice: string): void {
+    this.productsList(index).should("be.visible").and("contain.text", expectedPrice);
   }
 }
 

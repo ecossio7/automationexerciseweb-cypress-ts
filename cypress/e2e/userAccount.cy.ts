@@ -19,6 +19,6 @@ describe("User account test cases", () => {
   });
 
   afterEach(() => {
-    cy.deleteUserAccount();
+    cy.deleteUserAccountByAPI(newUser.email, newUser.accountInfo.password);
   });
 });

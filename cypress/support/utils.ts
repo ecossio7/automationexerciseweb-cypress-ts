@@ -42,18 +42,6 @@ export function getRandomSupportMessage(): SupportMessage {
   };
 }
 
-export function getExpectedProductDetail(): Product {
-  return {
-    name: "Blue Top",
-    description: "Category: Women > ",
-    price: "Rs. 500",
-    quantity: "1",
-    availability: "In Stock",
-    condition: "New",
-    brand: "Polo",
-  };
-}
-
 export function getRandomWriteYourReview(): WriteYourReview {
   return {
     firstName: faker.person.firstName(),

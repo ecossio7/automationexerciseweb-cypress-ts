@@ -15,7 +15,7 @@ describe("Products test cases", () => {
   productsPrice.forEach((product) => {
     it(`should display correct price (Rs. ${product.price}) for product: ${product.name}`, () => {
       productsPage.selectProduct(product.name);
-      productsPage.verifyPriceIsCorrect(product.price);
+      productsPage.verifyPriceIsCorrect(0, product.price);
     });
   });
 
