@@ -26,11 +26,11 @@ class Header {
     this.contactUsBtn().click();
   }
 
-  public verifyDeleteAccountBtnIsVisible() {
+  public verifyDeleteAccountBtnIsVisible(): void {
     this.deleteAccountBtn().should("be.visible");
   }
 
-  public verifyLogoutBtnIsVisible() {
+  public verifyLogoutBtnIsVisible(): void {
     this.logoutBtn().should("be.visible");
   }
 }

@@ -19,7 +19,7 @@ class ProductsPage {
     });
   }
 
-  public selectProduct(productName: string) {
+  public selectProduct(productName: string): void {
     this.searchProductTxt().type(productName);
     this.searchBtn().click();
     this.addTocartBtn().click();

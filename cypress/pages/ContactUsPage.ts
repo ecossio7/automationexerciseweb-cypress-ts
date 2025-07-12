@@ -18,7 +18,7 @@ class ContactUsPage {
     this.submitBtn().should("be.visible").and("be.enabled");
   }
 
-  public verifySuccessMessageIsVisible() {
+  public verifySuccessMessageIsVisible(): void {
     this.successLbl().should("be.visible").and("have.text", "Success! Your details have been submitted successfully.");
   }
 
